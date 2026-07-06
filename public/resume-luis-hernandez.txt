@@ -1,0 +1,23 @@
+Luis Hernandez
+Software Engineer
+
+Summary
+Software Engineering graduate from Drexel University specializing in backend systems, cloud infrastructure, full-stack development, and AI-powered applications. Experienced with APIs, distributed backend systems, databases, AWS infrastructure, authentication, CI/CD, and reliable product workflows.
+
+Selected Project Experience
+
+TechComms - Software Development Lead
+AWS-based communication and notification platform built for a senior capstone project with Vanguard stakeholders. Built 50+ backend endpoints across 9 AWS services with PostgreSQL, hierarchical RBAC, Amazon Bedrock summarization, scheduled and critical notifications, 36 passing tests, and load testing at approximately 48 requests per second with p95 latency below approximately 130 ms for major workflows.
+Stack: TypeScript, Node.js, AWS Lambda, API Gateway, Cognito, PostgreSQL, Amazon Bedrock, SES, EventBridge, CloudWatch, S3, GitHub Actions.
+
+Sentinel API - Backend Engineer
+Production-style REST API built with FastAPI, JWT authentication, PostgreSQL, SQLAlchemy, Alembic migrations, Redis-backed rate limiting, idempotent request handling, Docker, GitHub Actions, Fly.io deployment, validation, pagination, consistent error handling, and protected CRUD endpoints.
+
+Movie Recommendation Platform - Full-Stack Developer
+Real-time collaborative movie platform with room creation, WebSocket communication, shared movie selection, participant synchronization, TMDB API integration, user accounts, ratings, reviews, watchlists, and personalized recommendations.
+
+BetterDays - iOS Developer
+SwiftUI self-care and productivity application with daily and permanent goals, progress tracking, persistent storage, reminders, midnight resets, and accessible mobile interactions.
+
+Engineering Philosophy
+Build systems that are easy to understand, reliable under pressure, and valuable to the people using them.
