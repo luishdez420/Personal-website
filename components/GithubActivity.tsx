@@ -17,7 +17,11 @@ export function GithubActivity() {
             <p className="mt-5 leading-8 text-[var(--muted)]">
               This section is designed to work with static fallback content first. A live GitHub API integration can be added later without making the portfolio depend on network availability.
             </p>
-            <a href={profile.github} className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-2.5 text-sm font-bold text-[var(--background)]">
+            <a
+              href={profile.github}
+              className="github-activity-cta mt-6 inline-flex items-center gap-2 rounded-full border border-[var(--accent)] bg-[var(--accent)] px-5 py-2.5 text-sm font-bold shadow-[0_18px_50px_rgba(45,212,191,0.22)] transition hover:brightness-110"
+              aria-label="Open Luis Hernandez GitHub profile"
+            >
               <GitHubIcon className="h-[17px] w-[17px]" />
               Open GitHub
             </a>

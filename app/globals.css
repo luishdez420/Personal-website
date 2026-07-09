@@ -124,6 +124,14 @@ textarea {
   color: transparent;
 }
 
+.github-activity-cta {
+  color: #020617;
+}
+
+.github-activity-cta svg {
+  color: #020617;
+}
+
 .mask-fade {
   mask-image: linear-gradient(to bottom, transparent, black 12%, black 84%, transparent);
 }
