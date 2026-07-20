@@ -128,38 +128,127 @@ export const projects: Project[] = [
     ]
   },
   {
-    key: "betterdays",
-    title: "BetterDays",
-    role: "iOS Developer",
-    impact: "SwiftUI self-care and productivity app with daily goals, persistent progress, reminders, and midnight resets.",
+    key: "macros-ai",
+    title: "MacrosAI",
+    role: "Product & Full-Stack Engineer",
+    impact:
+      "Living Nutrition is a production-minded mobile nutrition tracker built around source-backed data, assistive AI, immutable meal snapshots, and user-controlled decisions.",
     problem:
-      "Goal tracking apps often make simple routines feel heavy, especially when users need a calm daily reset rather than another dashboard.",
+      "Nutrition logging is repetitive and difficult to trust. A photo cannot reliably determine weight, oils, sauces, cooking method, hidden ingredients, or edible portions, yet many products present an AI estimate as a definitive answer.",
     solution:
-      "Built a focused SwiftUI app for daily and permanent goals, progress tracking, persistent storage, reminders, and automatic midnight resets.",
+      "Designed and built an advanced MVP vertical slice that combines USDA and Open Food Facts records with manual search, barcode and label capture, recipes, custom foods, camera-assisted analysis, explicit portion review, and resilient offline-aware meal logging.",
     decisions: [
-      "Designed around daily momentum and small recovery loops.",
-      "Kept permanent goals separate from daily goals so long-term tracking does not clutter the day.",
-      "Used local persistence and notifications to preserve privacy and responsiveness."
+      "Kept nutrition calculations grounded in per-100g provider data and confirmed gram amounts instead of AI-generated macro guesses.",
+      "Required a visible source record, confidence signal, editable portion, and user confirmation before camera-assisted meals can be saved.",
+      "Stored immutable nutrition snapshots with historical meals so provider revisions never silently rewrite a user's diary.",
+      "Structured the npm-workspace monorepo around a mobile app, FastAPI service, typed client, shared types, validation utilities, and design tokens."
     ],
     challenges: [
-      "Handling midnight reset behavior reliably.",
-      "Making progress visible without turning self-care into a pressure system."
+      "Representing uncertainty without making fast logging feel slow or clinical.",
+      "Normalizing serving and nutrient data across providers with different completeness and quality characteristics.",
+      "Preventing duplicate meal logs during ambiguous mobile network failures.",
+      "Designing camera and label workflows that remain useful while minimizing image retention and metadata exposure."
     ],
     results: [
-      "Daily and permanent goal flows.",
-      "Persistent storage and progress tracking.",
-      "Reminder support and automatic midnight resets.",
-      "Accessible mobile interactions."
+      "Advanced MVP vertical slice with persistent meal history, daily macro detail, hydration, goals, and date navigation.",
+      "Implemented manual search, barcode lookup, custom foods, recipes, favorites, recents, and source-provenance screens.",
+      "Added camera and nutrition-label review workflows with provider-backed alternatives and explicit confirmation.",
+      "Built versioned /api/v1 endpoints, consistent error envelopes, request IDs, idempotent meal creation, and account-scoped offline queueing.",
+      "Added data export, security activity, retention controls, and deliberate typed-confirmation account deletion."
     ],
-    stack: ["Swift", "SwiftUI", "Persistent storage", "Notifications", "Responsive design"],
-    githubUrl: "https://github.com/luishernandez/betterdays",
-    accent: "#fda4af",
+    stack: [
+      "React Native",
+      "Expo SDK 54",
+      "TypeScript",
+      "Expo Router",
+      "TanStack Query",
+      "Zustand",
+      "FastAPI",
+      "Python",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "Alembic",
+      "USDA FoodData Central",
+      "Open Food Facts",
+      "Computer Vision",
+      "EAS"
+    ],
+    githubUrl: "https://github.com/luishdez420/MacrosAI",
+    accent: "#6ee7b7",
     architecture: [
-      { id: "today", label: "Today", detail: "Daily goals reset cleanly and keep the current day focused.", x: 20, y: 35 },
-      { id: "progress", label: "Progress", detail: "Lightweight progress tracking shows momentum without clutter.", x: 46, y: 22 },
-      { id: "storage", label: "Storage", detail: "Persistent local data keeps goals available across sessions.", x: 46, y: 62 },
-      { id: "reminders", label: "Reminders", detail: "Notification prompts help users return to meaningful routines.", x: 72, y: 35 },
-      { id: "reset", label: "Reset", detail: "Midnight resets prepare the next day without manual cleanup.", x: 72, y: 66 }
+      { id: "mobile", label: "Expo Mobile", detail: "React Native experience for search, scanning, meal building, diary history, goals, and privacy controls.", x: 10, y: 42 },
+      { id: "api", label: "FastAPI v1", detail: "Versioned API with typed contracts, consistent error envelopes, request IDs, and account-scoped authorization.", x: 31, y: 42 },
+      { id: "providers", label: "Food Sources", detail: "USDA FoodData Central and Open Food Facts records normalized behind a provider abstraction and cache.", x: 53, y: 23 },
+      { id: "vision", label: "Vision Review", detail: "Assistive meal and label analysis proposes candidates, portions, and warnings but never bypasses user review.", x: 53, y: 64 },
+      { id: "postgres", label: "PostgreSQL", detail: "Relational model for meals, immutable snapshots, recipes, goals, revisions, audit events, and refresh sessions.", x: 76, y: 23 },
+      { id: "queue", label: "Offline Queue", detail: "Confirmed meal snapshots can be queued after ambiguous failures with caller-owned idempotency keys and explicit sync controls.", x: 76, y: 64 },
+      { id: "privacy", label: "Data Controls", detail: "Secure token storage, hashed refresh sessions, minimal audit events, export, retention preferences, and account deletion.", x: 91, y: 42 }
+    ],
+    caseStudySections: [
+      {
+        title: "Product principles",
+        summary: "The product is designed around responsible uncertainty and neutral, non-judgmental guidance.",
+        items: [
+          "Authoritative provider records or user-confirmed custom foods supply nutrition values; AI never invents the final macros.",
+          "Every camera-assisted result exposes confidence, quality warnings, serving basis, alternatives, and editable portions.",
+          "Users confirm the exact food record and gram amount before anything changes their diary.",
+          "Historical meals retain immutable snapshots, preserving what the user actually logged at that moment.",
+          "The experience supports general wellness and habit awareness without presenting itself as medical nutrition therapy."
+        ]
+      },
+      {
+        title: "Core product workflows",
+        items: [
+          "Manual USDA search, Open Food Facts barcode lookup, verified servings, grams, ounces, custom foods, and user-created barcode products.",
+          "Meal Builder, reusable recipes, favorites, recent foods, ingredient ordering, categories, and logging-to-today.",
+          "Nutrition-label capture routes extracted values into an editable custom-food flow that requires manual review.",
+          "Camera-assisted logging accepts one to three photos and surfaces candidates, portion ranges, preparation cues, hidden-ingredient prompts, and provider alternatives.",
+          "Daily dashboard covers macro progress, meal timeline, hydration, goals, weight entries, progress ranges, and monthly logging rhythm.",
+          "Onboarding captures goals, preferences, preferred logging method, appearance, and optional daily targets."
+        ]
+      },
+      {
+        title: "Reliability & data quality",
+        items: [
+          "Provider abstraction, normalized record caching, cached no-result searches, safe stale-record fallback, timeouts, bounded retries, and capped Retry-After handling.",
+          "Quality warnings cover stale records, duplicate conflicts, calorie/macro inconsistencies, missing serving basis, negative values, incomplete nutrients, and kJ/kcal confusion.",
+          "Provider revisions are tracked separately while logged meals remain immutable.",
+          "Caller-owned idempotency keys prevent duplicate meal creation during uncertain retries.",
+          "An account-scoped offline queue preserves confirmed meal snapshots after ambiguous failures and keeps synchronization explicit."
+        ]
+      },
+      {
+        title: "Privacy & security",
+        items: [
+          "Provider and vision API keys remain server-side; device tokens use SecureStore and refresh tokens are hashed, rotated, and revoked.",
+          "Images are validated, size-limited, orientation-normalized, re-encoded, and stripped of EXIF/container metadata before analysis.",
+          "Label photos are not persistently stored in the current workflow.",
+          "Audit events avoid credentials, raw tokens, meal contents, images, and raw request payloads.",
+          "Sensitive routes support configurable limits, with production designed for a Redis-backed shared limiter that fails safely.",
+          "Users can export data, inspect limited security activity, set retention preferences, and deliberately delete their account."
+        ]
+      },
+      {
+        title: "Design & accessibility",
+        summary: "The mobile system uses warm, neutral language and makes complex nutrition state legible without moralizing food choices.",
+        items: [
+          "Semantic light, dark, and system themes use atmospheric backgrounds, translucent materials, and accessible macro colors.",
+          "Today, Progress, Scan, Library, and Profile form a deliberate navigation model with Scan elevated as an explicit action.",
+          "Reduced-motion and reduced-transparency fallbacks preserve the experience without relying on visual effects.",
+          "Keyboard-aware forms, reachable sticky save actions, haptic feedback, and accessible alternatives support mobile ergonomics.",
+          "Loading, empty, validation, provider-outage, sync, and correction states are designed as first-class product moments."
+        ]
+      },
+      {
+        title: "Current stage",
+        summary: "The functioning MVP vertical slice validates the product architecture and the complete core logging loop.",
+        items: [
+          "Implemented: core logging, persistent history, barcode and custom foods, recipes, provenance, basic insights, privacy controls, and camera confirmation workflows.",
+          "Next: managed identity or OAuth, recovery flows, and production deployment validation.",
+          "Next: private image storage with enforceable retention/deletion controls and broader end-to-end mobile coverage.",
+          "Next: expanded provider refresh policies and more advanced camera correction workflows."
+        ]
+      }
     ]
   }
 ];
@@ -178,12 +267,11 @@ export const skillCategories: SkillCategory[] = [
     name: "Languages",
     description: "Tools for shaping APIs, interfaces, mobile experiences, and data models.",
     skills: [
-      { name: "TypeScript", projects: ["techcomms", "movie-room"] },
+      { name: "TypeScript", projects: ["techcomms", "movie-room", "macros-ai"] },
       { name: "JavaScript", projects: ["movie-room"] },
-      { name: "Python", projects: ["sentinel"] },
+      { name: "Python", projects: ["sentinel", "macros-ai"] },
       { name: "Java", projects: [] },
-      { name: "Swift", projects: ["betterdays"] },
-      { name: "SQL", projects: ["techcomms", "sentinel", "movie-room"] },
+      { name: "SQL", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
       { name: "HTML", projects: ["movie-room"] },
       { name: "CSS", projects: ["movie-room"] }
     ]
@@ -193,14 +281,14 @@ export const skillCategories: SkillCategory[] = [
     description: "Reliable server-side systems with auth, contracts, and operational discipline.",
     skills: [
       { name: "Node.js", projects: ["techcomms", "movie-room"] },
-      { name: "FastAPI", projects: ["sentinel"] },
-      { name: "REST APIs", projects: ["techcomms", "sentinel", "movie-room"] },
+      { name: "FastAPI", projects: ["sentinel", "macros-ai"] },
+      { name: "REST APIs", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
       { name: "WebSockets", projects: ["movie-room"] },
-      { name: "Authentication", projects: ["techcomms", "sentinel", "movie-room"] },
-      { name: "JWT", projects: ["sentinel"] },
+      { name: "Authentication", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
+      { name: "JWT", projects: ["sentinel", "macros-ai"] },
       { name: "RBAC", projects: ["techcomms"] },
-      { name: "Rate limiting", projects: ["sentinel"] },
-      { name: "Background jobs", projects: ["techcomms"] }
+      { name: "Rate limiting", projects: ["sentinel", "macros-ai"] },
+      { name: "Background jobs", projects: ["techcomms", "macros-ai"] }
     ]
   },
   {
@@ -225,22 +313,25 @@ export const skillCategories: SkillCategory[] = [
     name: "Databases",
     description: "Persistence layers for relational workflows, migrations, and fast request guards.",
     skills: [
-      { name: "PostgreSQL", projects: ["techcomms", "sentinel", "movie-room"] },
+      { name: "PostgreSQL", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
       { name: "MariaDB", projects: [] },
-      { name: "Redis", projects: ["sentinel"] },
-      { name: "SQLAlchemy", projects: ["sentinel"] },
-      { name: "Alembic", projects: ["sentinel"] }
+      { name: "Redis", projects: ["sentinel", "macros-ai"] },
+      { name: "SQLAlchemy", projects: ["sentinel", "macros-ai"] },
+      { name: "Alembic", projects: ["sentinel", "macros-ai"] }
     ]
   },
   {
     name: "Frontend",
     description: "Interfaces that make complex systems understandable and pleasant to use.",
     skills: [
-      { name: "React", projects: ["movie-room"] },
+      { name: "React", projects: ["movie-room", "macros-ai"] },
       { name: "Next.js", projects: ["movie-room"] },
       { name: "Tailwind CSS", projects: ["movie-room"] },
-      { name: "SwiftUI", projects: ["betterdays"] },
-      { name: "Responsive design", projects: ["movie-room", "betterdays"] },
+      { name: "React Native", projects: ["macros-ai"] },
+      { name: "Expo", projects: ["macros-ai"] },
+      { name: "TanStack Query", projects: ["macros-ai"] },
+      { name: "Zustand", projects: ["macros-ai"] },
+      { name: "Responsive design", projects: ["movie-room", "macros-ai"] },
       { name: "Framer Motion", projects: [] }
     ]
   }

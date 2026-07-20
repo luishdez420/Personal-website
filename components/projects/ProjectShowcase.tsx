@@ -44,7 +44,7 @@ export function ProjectShowcase() {
                 transition={{ duration: 0.25 }}
                 style={{ borderColor: activeIndex === index ? project.accent : "var(--line)" }}
               >
-                <div className="flex flex-col justify-between gap-6">
+                <div className={`flex flex-col gap-6 ${project.key === "macros-ai" ? "justify-center lg:px-4" : "justify-between"}`}>
                   <div>
                     <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-3 py-1.5 text-sm text-[var(--muted)]">
                       <Layers3 size={15} style={{ color: project.accent }} />
@@ -141,6 +141,17 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           <ListBlock title="Challenges" items={project.challenges} />
           <ListBlock title="Results" items={project.results} />
         </div>
+
+        {project.caseStudySections && (
+          <div className="mt-8">
+            <h4 className="mb-4 text-2xl font-bold">Deep dive</h4>
+            <div className="grid gap-5 md:grid-cols-2">
+              {project.caseStudySections.map((section) => (
+                <DetailBlock key={section.title} title={section.title} summary={section.summary} items={section.items} />
+              ))}
+            </div>
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -165,5 +176,22 @@ function ListBlock({ title, items }: { title: string; items: string[] }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+function DetailBlock({ title, summary, items }: { title: string; summary?: string; items: string[] }) {
+  return (
+    <section className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-5">
+      <h5 className="text-xl font-bold">{title}</h5>
+      {summary && <p className="mt-3 leading-7 text-[var(--muted)]">{summary}</p>}
+      <ul className="mt-4 space-y-3 text-sm leading-6 text-[var(--muted)]">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3">
+            <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

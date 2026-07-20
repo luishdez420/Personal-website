@@ -1,4 +1,4 @@
-export type ProjectKey = "techcomms" | "sentinel" | "movie-room" | "betterdays";
+export type ProjectKey = "techcomms" | "sentinel" | "movie-room" | "macros-ai";
 
 export type ArchitectureNode = {
   id: string;
@@ -23,6 +23,11 @@ export type Project = {
   liveUrl?: string;
   accent: string;
   architecture: ArchitectureNode[];
+  caseStudySections?: {
+    title: string;
+    summary?: string;
+    items: string[];
+  }[];
 };
 
 export type SkillCategory = {

@@ -5,7 +5,7 @@ import { SectionReveal } from "./animations/SectionReveal";
 import { GitHubIcon } from "./ui/BrandIcons";
 
 export function GithubActivity() {
-  const languages = ["TypeScript", "Python", "Swift", "SQL", "JavaScript"];
+  const languages = ["TypeScript", "Python", "SQL", "JavaScript", "Java"];
 
   return (
     <section id="github" className="py-24">

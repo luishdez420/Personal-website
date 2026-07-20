@@ -16,8 +16,8 @@ Production-style REST API built with FastAPI, JWT authentication, PostgreSQL, SQ
 Movie Recommendation Platform - Full-Stack Developer
 Real-time collaborative movie platform with room creation, WebSocket communication, shared movie selection, participant synchronization, TMDB API integration, user accounts, ratings, reviews, watchlists, and personalized recommendations.
 
-BetterDays - iOS Developer
-SwiftUI self-care and productivity application with daily and permanent goals, progress tracking, persistent storage, reminders, midnight resets, and accessible mobile interactions.
+MacrosAI / Living Nutrition - Product & Full-Stack Engineer
+Production-minded React Native nutrition tracker built around source-backed USDA and Open Food Facts data, explicit portion confirmation, immutable meal snapshots, assistive camera workflows, privacy controls, resilient provider integrations, and a versioned FastAPI backend.
 
 Engineering Philosophy
 Build systems that are easy to understand, reliable under pressure, and valuable to the people using them.
