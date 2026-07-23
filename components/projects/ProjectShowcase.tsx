@@ -74,9 +74,14 @@ export function ProjectShowcase() {
                         GitHub
                       </a>
                       {project.liveUrl && (
-                        <a href={project.liveUrl} className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-2.5 text-sm font-semibold">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-2.5 text-sm font-semibold"
+                        >
                           <ExternalLink size={16} />
-                          Live demo
+                          {project.liveLabel ?? "Live demo"}
                         </a>
                       )}
                     </div>

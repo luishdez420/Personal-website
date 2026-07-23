@@ -21,6 +21,7 @@ export type Project = {
   stack: string[];
   githubUrl: string;
   liveUrl?: string;
+  liveLabel?: string;
   accent: string;
   architecture: ArchitectureNode[];
   caseStudySections?: {

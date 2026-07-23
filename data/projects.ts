@@ -129,14 +129,14 @@ export const projects: Project[] = [
   },
   {
     key: "macros-ai",
-    title: "MacrosAI",
+    title: "Living Nutrition",
     role: "Product & Full-Stack Engineer",
     impact:
-      "Living Nutrition is a production-minded mobile nutrition tracker built around source-backed data, assistive AI, immutable meal snapshots, and user-controlled decisions.",
+      "A privacy-conscious mobile nutrition tracker built around source-backed food data, immutable meal snapshots, and user-controlled decisions.",
     problem:
       "Nutrition logging is repetitive and difficult to trust. A photo cannot reliably determine weight, oils, sauces, cooking method, hidden ingredients, or edible portions, yet many products present an AI estimate as a definitive answer.",
     solution:
-      "Designed and built an advanced MVP vertical slice that combines USDA and Open Food Facts records with manual search, barcode and label capture, recipes, custom foods, camera-assisted analysis, explicit portion review, and resilient offline-aware meal logging.",
+      "Designed and built an advanced MVP that combines USDA and Open Food Facts records with manual search, barcode and label capture, recipes, custom foods, explicit portion review, and resilient offline-aware meal logging.",
     decisions: [
       "Kept nutrition calculations grounded in per-100g provider data and confirmed gram amounts instead of AI-generated macro guesses.",
       "Required a visible source record, confidence signal, editable portion, and user confirmation before camera-assisted meals can be saved.",
@@ -174,6 +174,8 @@ export const projects: Project[] = [
       "EAS"
     ],
     githubUrl: "https://github.com/luishdez420/MacrosAI",
+    liveUrl: "https://drive.google.com/file/d/1aDl_A52UCP31PpeCQrMo5EyOvITAjHkP/view?usp=sharing",
+    liveLabel: "Watch demo",
     accent: "#6ee7b7",
     architecture: [
       { id: "mobile", label: "Expo Mobile", detail: "React Native experience for search, scanning, meal building, diary history, goals, and privacy controls.", x: 10, y: 42 },
@@ -225,7 +227,7 @@ export const projects: Project[] = [
           "Label photos are not persistently stored in the current workflow.",
           "Audit events avoid credentials, raw tokens, meal contents, images, and raw request payloads.",
           "Sensitive routes support configurable limits, with production designed for a Redis-backed shared limiter that fails safely.",
-          "Users can export data, inspect limited security activity, set retention preferences, and deliberately delete their account."
+          "Users can export Living Nutrition data, inspect limited security activity, set retention preferences, and deliberately delete their app data."
         ]
       },
       {
@@ -241,12 +243,12 @@ export const projects: Project[] = [
       },
       {
         title: "Current stage",
-        summary: "The functioning MVP vertical slice validates the product architecture and the complete core logging loop.",
+        summary: "The working MVP validates the complete core logging loop and is available as a no-cost preview.",
         items: [
-          "Implemented: core logging, persistent history, barcode and custom foods, recipes, provenance, basic insights, privacy controls, and camera confirmation workflows.",
-          "Next: managed identity or OAuth, recovery flows, and production deployment validation.",
-          "Next: private image storage with enforceable retention/deletion controls and broader end-to-end mobile coverage.",
-          "Next: expanded provider refresh policies and more advanced camera correction workflows."
+          "Implemented: Clerk-managed sign-in, core logging, persistent history, barcode and custom foods, recipes, provenance, basic insights, privacy controls, and camera confirmation workflows.",
+          "Validated: account isolation, offline/reconnect behavior, accessibility, and iOS/Android physical-device flows.",
+          "Public preview: manual food search and tracking are available; camera and nutrition-label AI are intentionally disabled to keep the no-cost deployment safe.",
+          "Next: paid production deployment validation for private object storage, worker replicas, Redis, monitoring, and AI operations."
         ]
       }
     ]
