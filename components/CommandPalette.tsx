@@ -9,6 +9,7 @@ const commands = [
   { label: "Explore projects", href: "#projects", detail: "Jump to flagship case studies" },
   { label: "Read about Luis", href: "#about", detail: "Engineering story and philosophy" },
   { label: "Inspect skills", href: "#skills", detail: "Interactive technical ecosystem" },
+  { label: "View credentials", href: "#credentials", detail: "IBM and professional certifications" },
   { label: "Start a conversation", href: "#contact", detail: "Contact form and social links" },
   { label: "View resume", href: profile.resumePath, detail: "Concise resume page" },
   { label: "Open GitHub", href: profile.github, detail: "Featured repositories", external: true },

@@ -1,5 +1,6 @@
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
+import { Credentials } from "@/components/Credentials";
 import { GithubActivity } from "@/components/GithubActivity";
 import { Hero } from "@/components/Hero";
 import { Metrics } from "@/components/Metrics";
@@ -7,6 +8,7 @@ import { Process } from "@/components/Process";
 import { ProjectShowcase } from "@/components/projects/ProjectShowcase";
 import { SkillsEcosystem } from "@/components/SkillsEcosystem";
 import { profile } from "@/data/profile";
+import { credentials } from "@/data/credentials";
 import { projects } from "@/data/projects";
 
 export default function Home() {
@@ -19,6 +21,17 @@ export default function Home() {
       email: profile.email,
       url: "https://luishernandez.dev",
       sameAs: [profile.github, profile.linkedin],
+      hasCredential: credentials.map((credential) => ({
+        "@type": "EducationalOccupationalCredential",
+        name: credential.title,
+        credentialCategory: "Professional certificate",
+        recognizedBy: {
+          "@type": "Organization",
+          name: credential.issuer
+        },
+        dateCreated: credential.issuedOn,
+        url: credential.credentialUrl
+      })),
       alumniOf: {
         "@type": "CollegeOrUniversity",
         name: "Drexel University"
@@ -36,6 +49,19 @@ export default function Home() {
         name: profile.name
       },
       codeRepository: project.githubUrl
+    })),
+    ...credentials.map((credential) => ({
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalCredential",
+      name: credential.title,
+      description: credential.description,
+      credentialCategory: "Professional certificate",
+      dateCreated: credential.issuedOn,
+      recognizedBy: {
+        "@type": "Organization",
+        name: credential.issuer
+      },
+      url: credential.credentialUrl
     }))
   ];
 
@@ -47,6 +73,7 @@ export default function Home() {
       <Metrics />
       <ProjectShowcase />
       <SkillsEcosystem />
+      <Credentials />
       <Process />
       <GithubActivity />
       <Contact />
