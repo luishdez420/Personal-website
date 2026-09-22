@@ -1,4 +1,4 @@
-export type ProjectKey = "techcomms" | "sentinel" | "movie-room" | "macros-ai";
+export type ProjectKey = "techcomms" | "sentinel" | "comercio-os" | "movie-room" | "macros-ai";
 
 export type ArchitectureNode = {
   id: string;
@@ -11,6 +11,8 @@ export type ArchitectureNode = {
 export type Project = {
   key: ProjectKey;
   title: string;
+  subtitle?: string;
+  status?: string;
   role: string;
   impact: string;
   problem: string;
@@ -19,9 +21,11 @@ export type Project = {
   challenges: string[];
   results: string[];
   stack: string[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
   liveLabel?: string;
+  caseStudyLabel?: string;
+  privacyNote?: string;
   accent: string;
   architecture: ArchitectureNode[];
   caseStudySections?: {

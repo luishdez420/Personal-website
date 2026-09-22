@@ -41,7 +41,11 @@ export default function ResumePage() {
           <div className="mt-4 grid gap-4">
             {projects.map((project) => (
               <div key={project.key} className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-5">
-                <h3 className="text-xl font-bold">{project.title}</h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  {project.status && <span className="rounded-full border border-[var(--line)] px-2.5 py-1 text-xs font-semibold text-[var(--muted)]">{project.status}</span>}
+                </div>
+                {project.subtitle && <p className="mt-2 text-sm font-semibold text-[var(--foreground)]">{project.subtitle}</p>}
                 <p className="mt-1 text-sm font-semibold text-[var(--accent-strong)]">{project.role}</p>
                 <p className="mt-3 leading-7 text-[var(--muted)]">{project.impact}</p>
                 <p className="mt-3 text-sm text-[var(--muted)]">{project.stack.join(" · ")}</p>

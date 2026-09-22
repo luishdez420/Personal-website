@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ExternalLink, Layers3, X } from "lucide-react";
+import { ExternalLink, Layers3, LockKeyhole, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { projects } from "@/data/projects";
 import type { Project } from "@/types/portfolio";
@@ -46,11 +46,20 @@ export function ProjectShowcase() {
               >
                 <div className={`flex flex-col gap-6 ${project.key === "macros-ai" ? "justify-center lg:px-4" : "justify-between"}`}>
                   <div>
-                    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-3 py-1.5 text-sm text-[var(--muted)]">
-                      <Layers3 size={15} style={{ color: project.accent }} />
-                      {project.role}
+                    <div className="mb-5 flex flex-wrap gap-2">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-3 py-1.5 text-sm text-[var(--muted)]">
+                        <Layers3 size={15} style={{ color: project.accent }} />
+                        {project.role}
+                      </span>
+                      {project.status && (
+                        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--panel)] px-3 py-1.5 text-sm font-semibold">
+                          <LockKeyhole size={14} style={{ color: project.accent }} />
+                          {project.status}
+                        </span>
+                      )}
                     </div>
                     <h3 className="text-3xl font-black tracking-tight sm:text-4xl">{project.title}</h3>
+                    {project.subtitle && <p className="mt-2 text-base font-semibold" style={{ color: project.accent }}>{project.subtitle}</p>}
                     <p className="mt-4 text-lg leading-8 text-[var(--muted)]">{project.impact}</p>
                   </div>
                   <div>
@@ -67,12 +76,14 @@ export function ProjectShowcase() {
                         onClick={() => setSelected(project)}
                         className="rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-bold text-slate-950"
                       >
-                        Detailed case study
+                        {project.caseStudyLabel ?? "Detailed case study"}
                       </button>
-                      <a href={project.githubUrl} className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-2.5 text-sm font-semibold">
-                        <GitHubIcon className="h-4 w-4" />
-                        GitHub
-                      </a>
+                      {project.githubUrl && (
+                        <a href={project.githubUrl} className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-2.5 text-sm font-semibold">
+                          <GitHubIcon className="h-4 w-4" />
+                          GitHub
+                        </a>
+                      )}
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
@@ -122,8 +133,17 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="eyebrow">{project.role}</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="eyebrow">{project.role}</p>
+              {project.status && (
+                <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--panel)] px-3 py-1.5 text-xs font-bold">
+                  <LockKeyhole size={13} style={{ color: project.accent }} />
+                  {project.status}
+                </span>
+              )}
+            </div>
             <h3 className="mt-3 text-4xl font-black tracking-tight">{project.title}</h3>
+            {project.subtitle && <p className="mt-2 font-semibold" style={{ color: project.accent }}>{project.subtitle}</p>}
             <p className="mt-4 max-w-3xl text-lg leading-8 text-[var(--muted)]">{project.impact}</p>
           </div>
           <button type="button" onClick={onClose} aria-label="Close case study" className="rounded-full border border-[var(--line)] p-2">
@@ -146,6 +166,16 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           <ListBlock title="Challenges" items={project.challenges} />
           <ListBlock title="Results" items={project.results} />
         </div>
+
+        {project.privacyNote && (
+          <section className="mt-8 rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-5">
+            <div className="flex items-center gap-2">
+              <LockKeyhole size={18} style={{ color: project.accent }} />
+              <h4 className="text-xl font-bold">Privacy note</h4>
+            </div>
+            <p className="mt-3 max-w-4xl leading-7 text-[var(--muted)]">{project.privacyNote}</p>
+          </section>
+        )}
 
         {project.caseStudySections && (
           <div className="mt-8">

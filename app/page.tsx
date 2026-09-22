@@ -48,7 +48,7 @@ export default function Home() {
         "@type": "Person",
         name: profile.name
       },
-      codeRepository: project.githubUrl
+      ...(project.githubUrl ? { codeRepository: project.githubUrl } : {})
     })),
     ...credentials.map((credential) => ({
       "@context": "https://schema.org",

@@ -13,6 +13,9 @@ Stack: TypeScript, Node.js, AWS Lambda, API Gateway, Cognito, PostgreSQL, Amazon
 Sentinel API - Backend Engineer
 Production-style REST API built with FastAPI, JWT authentication, PostgreSQL, SQLAlchemy, Alembic migrations, Redis-backed rate limiting, idempotent request handling, Docker, GitHub Actions, Fly.io deployment, validation, pagination, consistent error handling, and protected CRUD endpoints.
 
+ComercioOS - Product & Full-Stack Engineer (Private / In development)
+Spanish-first multi-tenant commerce SaaS for Dominican businesses, combining storefronts, catalog and inventory management, server-authoritative checkout, fulfillment, CRM, analytics, localization, tenant-scoped authorization, testing, and deployment readiness. Source code and operational details remain private.
+
 Cuezly - Full-Stack Developer
 Real-time collaborative movie platform with room creation, WebSocket communication, shared movie selection, participant synchronization, TMDB API integration, user accounts, ratings, reviews, watchlists, and personalized recommendations.
 

@@ -93,6 +93,127 @@ export const projects: Project[] = [
     ]
   },
   {
+    key: "comercio-os",
+    title: "ComercioOS",
+    subtitle: "Spanish-first commerce platform for Dominican businesses",
+    status: "Private / In development",
+    role: "Product & Full-Stack Engineer",
+    impact:
+      "A multi-tenant commerce SaaS combining storefronts, catalog management, checkout, fulfillment, CRM, analytics, localization, and secure tenant-scoped operations.",
+    problem:
+      "Local businesses need a coherent way to run digital commerce without stitching together disconnected tools for storefronts, stock, orders, customer follow-up, and daily operations. The product also needs to reflect Spanish-first workflows and Dominican fulfillment expectations from the beginning.",
+    solution:
+      "I am building one responsive SaaS product that connects public storefronts with a tenant-scoped merchant workspace for catalog, checkout, fulfillment, customer relationships, analytics, and operational administration.",
+    decisions: [
+      "Designed tenant isolation around authenticated store memberships instead of accepting browser-provided store identifiers as authority.",
+      "Made checkout server-authoritative so pricing, stock availability, delivery fees, and order totals are derived and validated by the backend.",
+      "Added idempotent checkout behavior, concurrency-safe inventory allocation, and stale reservation recovery for retry-safe ordering.",
+      "Created owner, manager, and employee permission boundaries for sensitive merchant operations.",
+      "Used versioned migrations, ADRs, runbooks, and explicit implementation-status notes to keep product and operational decisions reviewable."
+    ],
+    challenges: [
+      "Keeping storefront speed and merchant workflow depth coherent within one multi-tenant product.",
+      "Maintaining inventory consistency across concurrent checkout, reservation, cancellation, pickup, and delivery flows.",
+      "Designing Spanish-first interfaces with an English fallback without duplicating business logic.",
+      "Building deployment, recovery, media, and provider boundaries that fail closed while the product remains in active development."
+    ],
+    results: [
+      "Built an integrated foundation spanning storefront, catalog, checkout, fulfillment, CRM, analytics, and merchant operations.",
+      "Established tenant-scoped authorization, role boundaries, database migrations, and backend-owned commerce calculations.",
+      "Added unit, API, browser end-to-end, and PostgreSQL integration and concurrency test coverage.",
+      "Documented architecture decisions, operational runbooks, deployment procedures, backup planning, and recovery rehearsals.",
+      "Kept the active commercial implementation private while presenting only high-level, demo-safe product material."
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "Playwright",
+      "Tailwind CSS",
+      "React",
+      "Python",
+      "Pydantic",
+      "SQLAlchemy",
+      "Alembic",
+      "Vitest",
+      "Supabase Auth",
+      "S3-compatible storage"
+    ],
+    caseStudyLabel: "View case study",
+    privacyNote:
+      "The source code, internal architecture details, provider configuration, and live operational data are private because this is an active product with commercial potential. Public materials use high-level architecture descriptions and demo-safe data only.",
+    accent: "#fbbf24",
+    architecture: [
+      { id: "storefront", label: "Storefront", detail: "Published stores expose localized catalog, cart, checkout, and private order-status experiences through verified public routing.", x: 10, y: 40 },
+      { id: "workspace", label: "Merchant UI", detail: "A responsive workspace supports catalog, fulfillment, customers, analytics, templates, and role-aware merchant operations.", x: 29, y: 68 },
+      { id: "identity", label: "Identity", detail: "Authenticated identities are resolved into store memberships and role capabilities before protected operations proceed.", x: 29, y: 20 },
+      { id: "api", label: "API Boundary", detail: "Typed backend contracts apply tenant scope, validation, idempotency, and server-authoritative commerce rules.", x: 50, y: 44 },
+      { id: "commerce", label: "Commerce", detail: "Catalog, checkout, inventory, fulfillment, CRM, media, templates, and reporting are organized as explicit product domains.", x: 70, y: 22 },
+      { id: "data", label: "Data Layer", detail: "Relational persistence and bounded caching support transactional state, migrations, reservations, and tenant-scoped reads.", x: 70, y: 66 },
+      { id: "operations", label: "Operations", detail: "Health checks, monitoring hooks, backup planning, restore procedures, and staged deployment workflows support operational readiness.", x: 90, y: 44 }
+    ],
+    caseStudySections: [
+      {
+        title: "Product scope",
+        summary: "ComercioOS joins customer-facing commerce and merchant operations in one Spanish-first product.",
+        items: [
+          "Merchant dashboard with tenant-scoped access and owner, manager, and employee permission boundaries.",
+          "Public storefront routing for published stores and verified custom domains.",
+          "Catalog workflows for categories, variants, stock, collections, media, and storefront filtering.",
+          "Checkout with backend-owned pricing, delivery or pickup options, inventory reservation, and idempotency protection.",
+          "Fulfillment workspace with status history, staff assignment, packing lists, customer-facing wording, and private merchant notes.",
+          "CRM foundation with customers, leads, pipeline stages, tags, filters, follow-up tasks, reminders, and activity history."
+        ]
+      },
+      {
+        title: "Product systems",
+        items: [
+          "Template lifecycle covering draft, preview, publish, rollback, version comparison, and owner-only publishing boundaries.",
+          "Spanish-first localization with an English fallback across public and merchant-facing flows.",
+          "Tenant-scoped analytics and reporting surfaces with operational summaries, conversion activity, product signals, and source freshness metadata.",
+          "Validated media intake with bounded file rules, direct object-storage uploads, cleanup scheduling, and accessibility metadata.",
+          "Capability-token patterns for private customer order status and recovery flows without exposing merchant administration."
+        ]
+      },
+      {
+        title: "Engineering highlights",
+        items: [
+          "Tenant context is derived from authenticated memberships rather than trusting identifiers supplied by the browser.",
+          "The backend recalculates prices, inventory, delivery fees, and final totals before committing checkout state.",
+          "Inventory allocation is designed for concurrent requests, retry safety, and recovery of expired reservations.",
+          "Alembic migrations evolve a broad PostgreSQL schema across interconnected commerce domains.",
+          "External payment, email, media, and callback boundaries are designed to fail closed when configuration or verification is incomplete.",
+          "Implementation notes distinguish completed, partial, and intentionally out-of-scope behavior."
+        ]
+      },
+      {
+        title: "Tech stack",
+        items: [
+          "Frontend: Next.js, React, TypeScript, Tailwind CSS, Vitest, and Playwright.",
+          "Backend: FastAPI, Python, Pydantic, SQLAlchemy, and Alembic.",
+          "Data: PostgreSQL for transactional state and Redis for bounded caching and coordination.",
+          "Identity: Supabase Auth with API-side JWT verification and membership-derived tenant scope.",
+          "Media: S3-compatible object storage with a Cloudflare R2-style architecture and validated direct uploads.",
+          "Operations: Docker Compose, Traefik/Coolify-style deployment, GHCR image publishing, Sentry-style error monitoring, and public liveness checks."
+        ]
+      },
+      {
+        title: "Testing & operations",
+        summary: "The engineering work treats release and recovery paths as product behavior, not afterthoughts.",
+        items: [
+          "Unit, API, and browser end-to-end tests cover business rules and critical user journeys.",
+          "PostgreSQL integration and concurrency tests exercise transactional checkout and inventory behavior.",
+          "Health checks and error-monitoring hooks provide clear deployment and runtime signals.",
+          "Encrypted backup planning, restore rehearsal documentation, and staged deployment procedures define recovery expectations.",
+          "The product remains private and in active development; no public launch or production-live claim is implied."
+        ]
+      }
+    ]
+  },
+  {
     key: "movie-room",
     title: "Cuezly",
     role: "Full-Stack Developer",
@@ -261,7 +382,7 @@ export const metrics: Metric[] = [
   { label: "Passing tests", value: 36, suffix: "", context: "Unit and integration coverage for critical backend behavior." },
   { label: "Requests / second", value: 48, suffix: "", context: "Measured during 20-user load testing for major TechComms workflows." },
   { label: "Concurrent users", value: 20, suffix: "", context: "Used in load tests to validate platform behavior under pressure." },
-  { label: "Major projects", value: 4, suffix: "+", context: "Cloud platforms, APIs, real-time collaboration, and mobile product work." }
+  { label: "Major projects", value: 5, suffix: "+", context: "Cloud platforms, APIs, commerce SaaS, real-time collaboration, and mobile product work." }
 ];
 
 export const skillCategories: SkillCategory[] = [
@@ -269,11 +390,11 @@ export const skillCategories: SkillCategory[] = [
     name: "Languages",
     description: "Tools for shaping APIs, interfaces, mobile experiences, and data models.",
     skills: [
-      { name: "TypeScript", projects: ["techcomms", "movie-room", "macros-ai"] },
+      { name: "TypeScript", projects: ["techcomms", "comercio-os", "movie-room", "macros-ai"] },
       { name: "JavaScript", projects: ["movie-room"] },
-      { name: "Python", projects: ["sentinel", "macros-ai"] },
+      { name: "Python", projects: ["sentinel", "comercio-os", "macros-ai"] },
       { name: "Java", projects: [] },
-      { name: "SQL", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
+      { name: "SQL", projects: ["techcomms", "sentinel", "comercio-os", "movie-room", "macros-ai"] },
       { name: "HTML", projects: ["movie-room"] },
       { name: "CSS", projects: ["movie-room"] }
     ]
@@ -283,14 +404,14 @@ export const skillCategories: SkillCategory[] = [
     description: "Reliable server-side systems with auth, contracts, and operational discipline.",
     skills: [
       { name: "Node.js", projects: ["techcomms", "movie-room"] },
-      { name: "FastAPI", projects: ["sentinel", "macros-ai"] },
-      { name: "REST APIs", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
+      { name: "FastAPI", projects: ["sentinel", "comercio-os", "macros-ai"] },
+      { name: "REST APIs", projects: ["techcomms", "sentinel", "comercio-os", "movie-room", "macros-ai"] },
       { name: "WebSockets", projects: ["movie-room"] },
-      { name: "Authentication", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
-      { name: "JWT", projects: ["sentinel", "macros-ai"] },
-      { name: "RBAC", projects: ["techcomms"] },
+      { name: "Authentication", projects: ["techcomms", "sentinel", "comercio-os", "movie-room", "macros-ai"] },
+      { name: "JWT", projects: ["sentinel", "comercio-os", "macros-ai"] },
+      { name: "RBAC", projects: ["techcomms", "comercio-os"] },
       { name: "Rate limiting", projects: ["sentinel", "macros-ai"] },
-      { name: "Background jobs", projects: ["techcomms", "macros-ai"] }
+      { name: "Background jobs", projects: ["techcomms", "comercio-os", "macros-ai"] }
     ]
   },
   {
@@ -305,8 +426,8 @@ export const skillCategories: SkillCategory[] = [
       { name: "EventBridge", projects: ["techcomms"] },
       { name: "CloudWatch", projects: ["techcomms"] },
       { name: "S3", projects: ["techcomms"] },
-      { name: "Docker", projects: ["sentinel"] },
-      { name: "GitHub Actions", projects: ["techcomms", "sentinel"] },
+      { name: "Docker", projects: ["sentinel", "comercio-os"] },
+      { name: "GitHub Actions", projects: ["techcomms", "sentinel", "comercio-os"] },
       { name: "Fly.io", projects: ["sentinel"] },
       { name: "Vercel", projects: ["movie-room"] }
     ]
@@ -315,25 +436,26 @@ export const skillCategories: SkillCategory[] = [
     name: "Databases",
     description: "Persistence layers for relational workflows, migrations, and fast request guards.",
     skills: [
-      { name: "PostgreSQL", projects: ["techcomms", "sentinel", "movie-room", "macros-ai"] },
+      { name: "PostgreSQL", projects: ["techcomms", "sentinel", "comercio-os", "movie-room", "macros-ai"] },
       { name: "MariaDB", projects: [] },
-      { name: "Redis", projects: ["sentinel", "macros-ai"] },
-      { name: "SQLAlchemy", projects: ["sentinel", "macros-ai"] },
-      { name: "Alembic", projects: ["sentinel", "macros-ai"] }
+      { name: "Redis", projects: ["sentinel", "comercio-os", "macros-ai"] },
+      { name: "SQLAlchemy", projects: ["sentinel", "comercio-os", "macros-ai"] },
+      { name: "Alembic", projects: ["sentinel", "comercio-os", "macros-ai"] }
     ]
   },
   {
     name: "Frontend",
     description: "Interfaces that make complex systems understandable and pleasant to use.",
     skills: [
-      { name: "React", projects: ["movie-room", "macros-ai"] },
-      { name: "Next.js", projects: ["movie-room"] },
-      { name: "Tailwind CSS", projects: ["movie-room"] },
+      { name: "React", projects: ["comercio-os", "movie-room", "macros-ai"] },
+      { name: "Next.js", projects: ["comercio-os", "movie-room"] },
+      { name: "Tailwind CSS", projects: ["comercio-os", "movie-room"] },
       { name: "React Native", projects: ["macros-ai"] },
       { name: "Expo", projects: ["macros-ai"] },
       { name: "TanStack Query", projects: ["macros-ai"] },
       { name: "Zustand", projects: ["macros-ai"] },
-      { name: "Responsive design", projects: ["movie-room", "macros-ai"] },
+      { name: "Responsive design", projects: ["comercio-os", "movie-room", "macros-ai"] },
+      { name: "Playwright", projects: ["comercio-os"] },
       { name: "Framer Motion", projects: [] }
     ]
   }

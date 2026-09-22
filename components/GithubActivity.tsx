@@ -6,6 +6,7 @@ import { GitHubIcon } from "./ui/BrandIcons";
 
 export function GithubActivity() {
   const languages = ["TypeScript", "Python", "SQL", "JavaScript", "Java"];
+  const publicRepositoryProjects = projects.filter((project) => project.githubUrl).slice(0, 4);
 
   return (
     <section id="github" className="py-24">
@@ -27,7 +28,7 @@ export function GithubActivity() {
             </a>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {projects.slice(0, 4).map((project) => (
+            {publicRepositoryProjects.map((project) => (
               <a key={project.key} href={project.githubUrl} className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-5 transition hover:-translate-y-1 hover:border-[var(--accent)]">
                 <h3 className="text-xl font-bold">{project.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{project.impact}</p>
