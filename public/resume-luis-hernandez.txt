@@ -13,7 +13,7 @@ Stack: TypeScript, Node.js, AWS Lambda, API Gateway, Cognito, PostgreSQL, Amazon
 Sentinel API - Backend Engineer
 Production-style REST API built with FastAPI, JWT authentication, PostgreSQL, SQLAlchemy, Alembic migrations, Redis-backed rate limiting, idempotent request handling, Docker, GitHub Actions, Fly.io deployment, validation, pagination, consistent error handling, and protected CRUD endpoints.
 
-Movie Recommendation Platform - Full-Stack Developer
+Cuezly - Full-Stack Developer
 Real-time collaborative movie platform with room creation, WebSocket communication, shared movie selection, participant synchronization, TMDB API integration, user accounts, ratings, reviews, watchlists, and personalized recommendations.
 
 MacrosAI / Living Nutrition - Product & Full-Stack Engineer

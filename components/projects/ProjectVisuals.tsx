@@ -1,12 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { Activity, Bookmark, ChartNoAxesColumnIncreasing, Home, Leaf, ScanLine, Search, UserRound } from "lucide-react";
 import type { ProjectKey } from "@/types/portfolio";
 
 export function ProjectVisual({ projectKey }: { projectKey: ProjectKey }) {
   if (projectKey === "sentinel") return <ApiRequestDemo />;
-  if (projectKey === "movie-room") return <MovieRoomDemo />;
+  if (projectKey === "movie-room") return <CuezlyPreview />;
   if (projectKey === "macros-ai") return <NutritionPhoneMockup />;
   return <SystemStatusPanel />;
 }
@@ -53,28 +54,37 @@ function ApiRequestDemo() {
   );
 }
 
-function MovieRoomDemo() {
-  const participants = ["Luis", "Ana", "Sam", "Maya"];
+function CuezlyPreview() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <div className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-5">
-      <div className="flex items-center justify-between">
-        <h4 className="font-bold">Friday movie room</h4>
-        <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-xs font-bold">Live sync</span>
+    <motion.figure
+      className="relative self-center overflow-hidden rounded-3xl border border-violet-300/20 bg-[#070b17] p-2 shadow-[0_24px_70px_rgba(76,61,145,0.24)] sm:p-3"
+      initial={reduceMotion ? undefined : { opacity: 0.82, scale: 0.985 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+      whileHover={reduceMotion ? undefined : { y: -4, scale: 1.008 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="relative overflow-hidden rounded-2xl">
+        <Image
+          src="/projects/cuezly-image.webp"
+          alt="Cuezly collaborative movie discovery room showing watch options, recommendations, and group compatibility"
+          width={1800}
+          height={1221}
+          sizes="(max-width: 1024px) calc(100vw - 72px), 52vw"
+          loading="eager"
+          unoptimized
+          className="h-auto w-full"
+        />
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-gradient-to-r from-transparent via-white/10 to-transparent blur-sm"
+          animate={reduceMotion ? undefined : { x: ["0%", "440%"] }}
+          transition={{ duration: 1.4, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        />
       </div>
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        {participants.map((person, index) => (
-          <motion.div
-            key={person}
-            className="rounded-2xl border border-[var(--line)] p-4"
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 2.4, repeat: Infinity, delay: index * 0.2 }}
-          >
-            <p className="text-sm font-bold">{person}</p>
-            <p className="mt-2 text-xs text-[var(--muted)]">voted for a sci-fi thriller</p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
+    </motion.figure>
   );
 }
 

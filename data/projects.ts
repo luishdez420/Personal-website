@@ -94,7 +94,7 @@ export const projects: Project[] = [
   },
   {
     key: "movie-room",
-    title: "Movie Recommendation Platform",
+    title: "Cuezly",
     role: "Full-Stack Developer",
     impact: "Collaborative movie discovery app with real-time rooms, WebSockets, accounts, reviews, watchlists, and recommendations.",
     problem:
